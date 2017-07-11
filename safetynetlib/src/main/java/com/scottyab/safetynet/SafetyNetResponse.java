@@ -38,6 +38,7 @@ public class SafetyNetResponse {
     private String apkDigestSha256;
     private boolean ctsProfileMatch;
     private boolean basicIntegrity;
+    private String advice;
 
     //forces the parse()
     private SafetyNetResponse() {
@@ -98,6 +99,16 @@ public class SafetyNetResponse {
         return basicIntegrity;
     }
 
+
+    /**
+     * If one or both the values of "basicIntegrity" or "ctsProfileMatch" are false, there probably will be a string "advice" advising on what to do so the device can become compliant with CTS.
+     *
+     * @return
+     */
+    public String getAdvice() {
+        return advice;
+    }
+
     /**
      * Parse the JSON string into populated SafetyNetResponse object
      *
@@ -146,6 +157,11 @@ public class SafetyNetResponse {
             if (root.has("timestampMs")) {
                 response.timestampMs = root.getLong("timestampMs");
             }
+
+            if (root.has("advice")) {
+                response.advice = root.getString("advice");
+            }
+
 
             return response;
         } catch (JSONException e) {

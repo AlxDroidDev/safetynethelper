@@ -8,10 +8,10 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId 'com.scottyab.safetynet.sample'
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 5
         versionName "0.5"
@@ -60,13 +60,16 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
     compile project(':safetynetlib')
-
     //testing the jitlab dependancy
     //compile 'com.github.scottyab:safetynethelper:0.1.0@aar'
-
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:25.3.1'
 }
